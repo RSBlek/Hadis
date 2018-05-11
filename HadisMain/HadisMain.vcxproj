@@ -157,6 +157,7 @@
     <ClInclude Include="PacketBuffer.h" />
     <ClInclude Include="PacketHandler.h" />
     <ClInclude Include="Security.h" />
+    <ClInclude Include="Spells.h" />
     <ClInclude Include="SM_ATTACK_Packet.h" />
     <ClInclude Include="SM_ATTACK_STATUS_Packet.h" />
     <ClInclude Include="SM_CAST_SPELL_END_Packet.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="HadisMain.cpp" />
     <ClCompile Include="PacketBuffer.cpp" />
     <ClCompile Include="PacketHandler.cpp" />
+    <ClCompile Include="Spells.cpp" />
     <ClCompile Include="Sniffer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

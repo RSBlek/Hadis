@@ -93,6 +93,9 @@
     <ClInclude Include="TmpDebug.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Spells.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -120,6 +123,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Decryptor.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Spells.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

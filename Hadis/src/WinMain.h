@@ -167,7 +167,6 @@ namespace Hadis {
 			// 
 			// timer1
 			// 
-			this->timer1->Enabled = true;
 			this->timer1->Interval = 300;
 			this->timer1->Tick += gcnew System::EventHandler(this, &WinMain::timer1_Tick);
 			// 
@@ -313,7 +312,7 @@ namespace Hadis {
 			this->tpDamageDone->ForeColor = System::Drawing::Color::White;
 			this->tpDamageDone->Location = System::Drawing::Point(4, 38);
 			this->tpDamageDone->Name = L"tpDamageDone";
-			this->tpDamageDone->Size = System::Drawing::Size(348, -1);
+			this->tpDamageDone->Size = System::Drawing::Size(348, 0);
 			this->tpDamageDone->TabIndex = 0;
 			this->tpDamageDone->Text = L"Damage Done";
 			// 
@@ -398,7 +397,7 @@ namespace Hadis {
 			this->tcMain->Controls->Add(this->tpSettings);
 			this->tcMain->Location = System::Drawing::Point(13, 22);
 			this->tcMain->Name = L"tcMain";
-			this->tcMain->SelectedIndex = 1;
+			this->tcMain->SelectedIndex = 0;
 			this->tcMain->Size = System::Drawing::Size(368, 413);
 			this->tcMain->TabIndex = 14;
 			this->tcMain->Theme = MetroFramework::MetroThemeStyle::Dark;

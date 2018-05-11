@@ -149,7 +149,7 @@
   <ItemGroup>
     <Reference Include="MetroFramework">
       <HintPath>lib\MetroFramework.dll</HintPath>
-      <Private>false</Private>
+      <Private>true</Private>
       <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
     </Reference>
