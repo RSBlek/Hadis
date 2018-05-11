@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\Packets">
+      <UniqueIdentifier>{ba8d22da-83de-4bdf-a6e4-a1ff4f60a1a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Sniffing">
+      <UniqueIdentifier>{845d2be5-7d5e-47c6-b598-3a396299b342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Security">
+      <UniqueIdentifier>{138fd2f3-248d-4385-b475-8446b5aa48a4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketBuffer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Firewall.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Hadis.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandler.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="OpCodes.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackPacket.h">
+      <Filter>Headerdateien\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePacket.h">
+      <Filter>Headerdateien\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="SM_ATTACK_Packet.h">
+      <Filter>Headerdateien\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="SM_ATTACK_STATUS_Packet.h">
+      <Filter>Headerdateien\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="SM_CAST_SPELL_END_Packet.h">
+      <Filter>Headerdateien\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="SM_INSTANCE_INFO_Packet.h">
+      <Filter>Headerdateien\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="SM_KEY_Packet.h">
+      <Filter>Headerdateien\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="SM_L2AUTH_LOGIN_CHECK_Packet.h">
+      <Filter>Headerdateien\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="SM_PLAYER_INFO_Packet.h">
+      <Filter>Headerdateien\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="SM_STATS_INFO_Packet.h">
+      <Filter>Headerdateien\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="TCPPacket.h">
+      <Filter>Headerdateien\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkHeader.h">
+      <Filter>Headerdateien\Sniffing</Filter>
+    </ClInclude>
+    <ClInclude Include="Decryptor.h">
+      <Filter>Headerdateien\Sniffing</Filter>
+    </ClInclude>
+    <ClInclude Include="Sniffer.h">
+      <Filter>Headerdateien\Sniffing</Filter>
+    </ClInclude>
+    <ClInclude Include="Security.h">
+      <Filter>Headerdateien\Security</Filter>
+    </ClInclude>
+    <ClInclude Include="TmpDebug.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="HadisMain.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Sniffer.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketBuffer.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Firewall.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Hadis.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketHandler.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Decryptor.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
