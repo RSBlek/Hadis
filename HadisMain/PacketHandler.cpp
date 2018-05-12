@@ -39,6 +39,9 @@ void PacketHandler::handlepacket(char* data, unsigned short size, Decryptor* dec
 			if (opcode == SM_STATS_INFO) {
 				rcv_sm_stats_info(data, size);
 			}
+			else if (opcode == SM_MOVE) {
+				rcv_sm_move(data, size, timestamp);
+			}
 			else if (opcode == SM_PLAYER_INFO) {
 				rcv_sm_player_info(data, size);
 			}
@@ -53,6 +56,11 @@ void PacketHandler::handlepacket(char* data, unsigned short size, Decryptor* dec
 			}
 		}
 	}
+}
+
+void PacketHandler::rcv_sm_move(char* data, unsigned int size, unsigned long long timestamp) {
+	//SM_MOVE_Packet* smp = new SM_MOVE_Packet(data, timestamp);
+	//movelist.push_back(smp);
 }
 
 void PacketHandler::rcv_sm_player_info(char* data, unsigned int size) {

@@ -9,3 +9,4 @@
 #define SM_KEY					0x49
 #define SM_INSTANCE_INFO		0x8E
 #define SM_L2AUTH_LOGIN_CHECK	0xC8
+#define SM_MOVE					0x38

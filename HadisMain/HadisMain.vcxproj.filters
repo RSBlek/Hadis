@@ -96,6 +96,9 @@
     <ClInclude Include="Spells.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="SM_MOVE_Packet.h">
+      <Filter>Headerdateien\Packets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
