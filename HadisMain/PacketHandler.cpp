@@ -56,6 +56,13 @@ void PacketHandler::handlepacket(char* data, unsigned short size, Decryptor* dec
 			}
 		}
 	}
+	else {
+		if (decryptor->haskey()) {
+			decryptor->decodePacket(data, size, isclient);
+			unsigned long long timestamp = (unsigned long)(duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count());
+			short opcode = *((short*)data);
+		}
+	}
 }
 
 void PacketHandler::rcv_sm_move(char* data, unsigned int size, unsigned long long timestamp) {

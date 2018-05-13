@@ -88,10 +88,8 @@ DWORD WINAPI Sniffer::startSniff(void* data) {
 		unsigned short dstport = htons(tcp_header->dest_port);
 		unsigned int tcpsize = tcp_header->data_offset * 4;
 		
-		
+		if (srcport != 7777 && dstport != 7777) continue;
 
-		//if (srcport != 7777 && dstport != 7777) continue;
-		if (srcport != 7777) continue;
 		unsigned int datasize = iRet - ip_header_size - tcpsize;
 		char* pdata = (char*)malloc(datasize);
 		char* datastart = packet + ip_header_size + tcpsize;

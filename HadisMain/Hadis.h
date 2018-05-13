@@ -30,6 +30,7 @@ public:
 class Hds {
 private:
 	PacketBuffer* serverpackets = new PacketBuffer();
+	PacketBuffer* clientpackets = new PacketBuffer();
 	PacketHandler* packethandler = new PacketHandler();
 	Sniffer* sniffer = new Sniffer();
 	Decryptor* decryptor = new Decryptor();

@@ -106,17 +106,19 @@ void Hds::sortclientserverpackets() {
 	std::list<TCPPacket*>::iterator next;
 	while (current != PacketBuffer::allpackets.end()) {
 		next = std::next(current, 1);
-		if ((*current)->clientpacket == false) { //If current packet is a Server Packet
+		if ((*current)->clientpacket == false) { //If current packet is a server packet
 			unsigned int currentsrcxdstport = (*current)->tcp_port_src * (*current)->tcp_port_dst; //Get session id of current packet
 			if (currentsrcxdstport != srcxdstport) {//If the session id is an other than the previous
 				srcxdstport = currentsrcxdstport; //Set new session id
 				serverpackets->nextsequence = 0; //Reset sequence number
 				serverpackets->reset(); //Delete all received packets except the unprocessed
+				clientpackets->nextsequence = 0; //Reset sequence number
+				clientpackets->reset(); //Delete all received packets except the unprocessed
 			}
 			serverpackets->unorderedpackets.push_back(*current); //Add this packet to the list of serverpackets
 		}
-		else { //Drop Client Packets
-			delete(*current);  //Free TCP Packet
+		else { //If the current packet is a client packet
+			clientpackets->unorderedpackets.push_back(*current); //Add this packet to the list of clientpackets
 		}
 		PacketBuffer::allpackets.erase(current); //Remove this packet from the list of unprocessed packets
 		current = next;
@@ -202,9 +204,15 @@ void Hds::processbuffer(PacketBuffer* pb, bool isclient) {
 void Hds::process() {
 	while (1) {
 		sortclientserverpackets();
+
 		sortpacketsbysequence(serverpackets);
 		readpacketdata(serverpackets);
 		processbuffer(serverpackets, false);
+
+		sortpacketsbysequence(clientpackets);
+		readpacketdata(clientpackets);
+		processbuffer(clientpackets, true);
+
 		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	}
 }
