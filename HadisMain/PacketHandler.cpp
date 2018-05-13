@@ -113,6 +113,8 @@ void PacketHandler::rcv_sm_attack_status(char* data, unsigned int size, unsigned
 
 void PacketHandler::rcv_sm_stats_info(char* data, unsigned int size) {
 	SM_STATS_INFO_Packet* ssip = new SM_STATS_INFO_Packet(data);
+	if (playerstats != nullptr) delete(playerstats);
+	playerstats = ssip;
 }
 
 void PacketHandler::rcv_sm_key(char* data, unsigned int size, Decryptor* decryptor) {

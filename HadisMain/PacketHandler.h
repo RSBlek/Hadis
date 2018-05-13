@@ -16,7 +16,7 @@ public:
 	std::list<SM_MOVE_Packet*> movelist = std::list<SM_MOVE_Packet*>();
 	std::unordered_map<unsigned int, list<AttackPacket*>> attacksByObjectID = std::unordered_map<unsigned int, list<AttackPacket*>>();
 	std::unordered_map<unsigned int, list<AttackPacket*>> attacksByTargetID = std::unordered_map<unsigned int, list<AttackPacket*>>();
-
+	SM_STATS_INFO_Packet* playerstats = nullptr;
 public: 
 	void handlepacket(char* data, unsigned short size, Decryptor* decryptor, bool isclient);
 	void reset();
