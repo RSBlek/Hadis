@@ -61,12 +61,21 @@ void PacketHandler::handlepacket(char* data, unsigned short size, Decryptor* dec
 			decryptor->decodePacket(data, size, isclient);
 			unsigned long long timestamp = (unsigned long)(duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count());
 			short opcode = *((short*)data);
+			if (opcode == CM_MOVE) {
+				rcv_cm_move(data, size, timestamp);
+			}
 		}
 	}
 }
 
+void PacketHandler::rcv_cm_move(char* data, unsigned int size, unsigned long long timestamp) {
+	CM_MOVE_Packet* cmp = new CM_MOVE_Packet(data, timestamp);
+	delete(cmp); //Currently not needed
+}
+
 void PacketHandler::rcv_sm_move(char* data, unsigned int size, unsigned long long timestamp) {
-	//SM_MOVE_Packet* smp = new SM_MOVE_Packet(data, timestamp);
+	SM_MOVE_Packet* smp = new SM_MOVE_Packet(data, timestamp);
+	delete(smp); //Currently not needed
 	//movelist.push_back(smp);
 }
 

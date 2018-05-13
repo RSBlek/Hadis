@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AttackPacket.h" />
+    <ClInclude Include="CM_MOVE_Packet.h" />
     <ClInclude Include="Decryptor.h" />
     <ClInclude Include="Firewall.h" />
     <ClInclude Include="GamePacket.h" />
