@@ -8,7 +8,7 @@ public:
 	float y;
 	float z;
 	unsigned char heading;
-	unsigned char movementtypeid;
+	char movementtypeid;
 	float x2;
 	float y2;
 	float z2;
