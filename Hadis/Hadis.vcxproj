@@ -101,6 +101,9 @@
       </EmbedManagedResourceFile>
       <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -140,6 +143,9 @@
     <ClInclude Include="src\WinMain.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="src\WinPlayer.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BarHandler.cpp" />
@@ -176,22 +182,20 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\..\Desktop\aion.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="src\WinMain.resx">
-      <DependentUpon>src\WinMain.h</DependentUpon>
+    <EmbeddedResource Include="src\WinMain.resx" />
+    <EmbeddedResource Include="src\WinPlayer.resx">
+      <DependentUpon>src\WinPlayer.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinMain.resx">
       <DependentUpon>src\WinMain.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinPlayer.resx">
+      <DependentUpon>src\WinPlayer.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Image Include="img\Home.png" />
     <Image Include="img\HomeSelected.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="resource.rc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HadisMain\HadisMain.vcxproj">

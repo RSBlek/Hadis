@@ -30,6 +30,9 @@
     <ClInclude Include="src\PlayerStatInfo.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="src\WinPlayer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\NetDevice.cpp">
@@ -43,17 +46,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\..\Desktop\aion.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="WinMain.resx">
-      <Filter>Ressourcendateien</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\WinMain.resx">
-      <Filter>Ressourcendateien</Filter>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="img\HomeSelected.png">
       <Filter>Ressourcendateien</Filter>
     </Image>
@@ -62,8 +54,11 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="resource.rc">
+    <EmbeddedResource Include="WinMain.resx">
       <Filter>Ressourcendateien</Filter>
-    </ResourceCompile>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\WinMain.resx">
+      <Filter>Ressourcendateien</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -26,9 +26,9 @@ namespace Hadis {
 
 
 	/// <summary>
-	/// Zusammenfassung für WinMain
+	/// Zusammenfassung für WinPlayer
 	/// </summary>
-	public ref class WinMain : public MetroFramework::Forms::MetroForm
+	public ref class WinPlayer : public MetroFramework::Forms::MetroForm
 	{
 	private: System::Windows::Forms::Timer^  timer1;
 
@@ -49,7 +49,7 @@ namespace Hadis {
 	private: System::Windows::Forms::PictureBox^  pbMain;
 
 	public:
-		BarHandler^ bh = gcnew BarHandler();
+		BarHandler ^ bh = gcnew BarHandler();
 	private: MetroFramework::Controls::MetroTabControl^  tcBars;
 	private: System::Windows::Forms::TabPage^  tpDamageDone;
 	private: System::Windows::Forms::TabPage^  tpDps;
@@ -67,12 +67,11 @@ namespace Hadis {
 	private: MetroFramework::Controls::MetroTabPage^  tpSettings;
 	private: MetroFramework::Controls::MetroComboBox^  cbDevices;
 	private: System::Windows::Forms::Button^  button2;
-
 	private: MetroFramework::Controls::MetroLabel^  lblDevice;
 
 
 	public:
-		WinMain(void)
+		WinPlayer(void)
 		{
 			InitializeComponent();
 			bh->setPictureBox(pbMain);
@@ -83,7 +82,7 @@ namespace Hadis {
 		/// <summary>
 		/// Verwendete Ressourcen bereinigen.
 		/// </summary>
-		~WinMain()
+		~WinPlayer()
 		{
 			if (components)
 			{
@@ -113,7 +112,7 @@ namespace Hadis {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(WinMain::typeid));
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(WinPlayer::typeid));
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->rtPlayerlist = (gcnew System::Windows::Forms::RichTextBox());
@@ -139,9 +138,9 @@ namespace Hadis {
 			this->tcMain = (gcnew MetroFramework::Controls::MetroTabControl());
 			this->tpMain = (gcnew MetroFramework::Controls::MetroTabPage());
 			this->tpSettings = (gcnew MetroFramework::Controls::MetroTabPage());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->lblDevice = (gcnew MetroFramework::Controls::MetroLabel());
 			this->cbDevices = (gcnew MetroFramework::Controls::MetroComboBox());
-			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			this->tabPage2->SuspendLayout();
@@ -164,13 +163,13 @@ namespace Hadis {
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Start Sniffer";
 			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &WinMain::button1_Click);
+			this->button1->Click += gcnew System::EventHandler(this, &WinPlayer::button1_Click);
 			// 
 			// timer1
 			// 
 			this->timer1->Enabled = true;
 			this->timer1->Interval = 300;
-			this->timer1->Tick += gcnew System::EventHandler(this, &WinMain::timer1_Tick);
+			this->timer1->Tick += gcnew System::EventHandler(this, &WinPlayer::timer1_Tick);
 			// 
 			// rtPlayerlist
 			// 
@@ -285,10 +284,10 @@ namespace Hadis {
 			this->pbMain->Size = System::Drawing::Size(342, 135);
 			this->pbMain->TabIndex = 0;
 			this->pbMain->TabStop = false;
-			this->pbMain->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &WinMain::pbMain_Paint);
-			this->pbMain->DoubleClick += gcnew System::EventHandler(this, &WinMain::pbMain_DoubleClick);
-			this->pbMain->MouseEnter += gcnew System::EventHandler(this, &WinMain::pbMain_MouseEnter);
-			this->pbMain->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &WinMain::pbMain_MouseMove);
+			this->pbMain->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &WinPlayer::pbMain_Paint);
+			this->pbMain->DoubleClick += gcnew System::EventHandler(this, &WinPlayer::pbMain_DoubleClick);
+			this->pbMain->MouseEnter += gcnew System::EventHandler(this, &WinPlayer::pbMain_MouseEnter);
+			this->pbMain->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &WinPlayer::pbMain_MouseMove);
 			// 
 			// tcBars
 			// 
@@ -304,7 +303,7 @@ namespace Hadis {
 			this->tcBars->TabIndex = 9;
 			this->tcBars->Theme = MetroFramework::MetroThemeStyle::Dark;
 			this->tcBars->UseSelectable = true;
-			this->tcBars->Selected += gcnew System::Windows::Forms::TabControlEventHandler(this, &WinMain::tcBars_Selected);
+			this->tcBars->Selected += gcnew System::Windows::Forms::TabControlEventHandler(this, &WinPlayer::tcBars_Selected);
 			// 
 			// tpDamageDone
 			// 
@@ -349,7 +348,7 @@ namespace Hadis {
 			this->metroPanel1->VerticalScrollbarBarColor = true;
 			this->metroPanel1->VerticalScrollbarHighlightOnWheel = true;
 			this->metroPanel1->VerticalScrollbarSize = 15;
-			this->metroPanel1->MouseEnter += gcnew System::EventHandler(this, &WinMain::metroPanel1_MouseEnter);
+			this->metroPanel1->MouseEnter += gcnew System::EventHandler(this, &WinPlayer::metroPanel1_MouseEnter);
 			// 
 			// metroScrollBar1
 			// 
@@ -366,7 +365,7 @@ namespace Hadis {
 			this->metroScrollBar1->Theme = MetroFramework::MetroThemeStyle::Dark;
 			this->metroScrollBar1->UseBarColor = true;
 			this->metroScrollBar1->UseSelectable = true;
-			this->metroScrollBar1->Scroll += gcnew System::Windows::Forms::ScrollEventHandler(this, &WinMain::metroScrollBar1_Scroll);
+			this->metroScrollBar1->Scroll += gcnew System::Windows::Forms::ScrollEventHandler(this, &WinPlayer::metroScrollBar1_Scroll);
 			// 
 			// btnHome
 			// 
@@ -378,7 +377,7 @@ namespace Hadis {
 			this->btnHome->Size = System::Drawing::Size(36, 36);
 			this->btnHome->TabIndex = 12;
 			this->btnHome->UseVisualStyleBackColor = true;
-			this->btnHome->Click += gcnew System::EventHandler(this, &WinMain::btnHome_Click);
+			this->btnHome->Click += gcnew System::EventHandler(this, &WinPlayer::btnHome_Click);
 			// 
 			// btnSettings
 			// 
@@ -390,7 +389,7 @@ namespace Hadis {
 			this->btnSettings->Size = System::Drawing::Size(36, 36);
 			this->btnSettings->TabIndex = 13;
 			this->btnSettings->UseVisualStyleBackColor = true;
-			this->btnSettings->Click += gcnew System::EventHandler(this, &WinMain::btnSettings_Click);
+			this->btnSettings->Click += gcnew System::EventHandler(this, &WinPlayer::btnSettings_Click);
 			// 
 			// tcMain
 			// 
@@ -444,6 +443,16 @@ namespace Hadis {
 			this->tpSettings->VerticalScrollbarHighlightOnWheel = false;
 			this->tpSettings->VerticalScrollbarSize = 10;
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(126, 134);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 15;
+			this->button2->Text = L"button2";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &WinPlayer::button2_Click);
+			// 
 			// lblDevice
 			// 
 			this->lblDevice->AutoSize = true;
@@ -466,17 +475,7 @@ namespace Hadis {
 			this->cbDevices->Theme = MetroFramework::MetroThemeStyle::Dark;
 			this->cbDevices->UseSelectable = true;
 			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(126, 134);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
-			this->button2->TabIndex = 15;
-			this->button2->Text = L"button2";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &WinMain::button2_Click);
-			// 
-			// WinMain
+			// WinPlayer
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -484,11 +483,11 @@ namespace Hadis {
 			this->Controls->Add(this->btnSettings);
 			this->Controls->Add(this->btnHome);
 			this->Controls->Add(this->tcMain);
-			this->Name = L"WinMain";
+			this->Name = L"WinPlayer";
 			this->Style = MetroFramework::MetroColorStyle::Green;
 			this->Theme = MetroFramework::MetroThemeStyle::Dark;
-			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &WinMain::WinMain_FormClosing);
-			this->Load += gcnew System::EventHandler(this, &WinMain::WinMain_Load);
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &WinPlayer::WinPlayer_FormClosing);
+			this->Load += gcnew System::EventHandler(this, &WinPlayer::WinPlayer_Load);
 			this->tabControl1->ResumeLayout(false);
 			this->tabPage1->ResumeLayout(false);
 			this->tabPage2->ResumeLayout(false);
@@ -506,7 +505,7 @@ namespace Hadis {
 
 		}
 #pragma endregion
-	private: System::Void WinMain_Load(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void WinPlayer_Load(System::Object^  sender, System::EventArgs^  e) {
 		System::Collections::Generic::List<NetDevice^>^ devices = NetDevice::getDevices();
 		for (int i = 0; i < devices->Count; i++) {
 			cbDevices->Items->Add(devices[i]);
@@ -517,97 +516,94 @@ namespace Hadis {
 	}
 
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		if (cbDevices->SelectedItem == nullptr ) {
+		if (cbDevices->SelectedItem == nullptr) {
 			MessageBoxA(NULL, "Please select a network interface", "Hadis Error", 0);
 			return;
 		}
-		NetDevice^ netdev = (NetDevice^)cbDevices->SelectedItem;	
+		NetDevice^ netdev = (NetDevice^)cbDevices->SelectedItem;
 		start(netdev->ip);
 	}
 
 
-private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
-	bh->clear();
-	std::vector<PlayerStatInfo>* pdd;
+	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
+		bh->clear();
+		std::vector<PlayerStatInfo>* pdd;
 
-	if (tcBars->SelectedIndex == 0) {
-		pdd = getPlayerStatInfo(0, PlayerStatInfo::PlayerStatInfoType::Damage);
+		if (tcBars->SelectedIndex == 0) {
+			pdd = getPlayerStatInfo(0, PlayerStatInfo::PlayerStatInfoType::Damage);
+		}
+		else if (tcBars->SelectedIndex == 2) {
+			pdd = getPlayerStatInfo(0, PlayerStatInfo::PlayerStatInfoType::Heal);
+		}
+		else if (tcBars->SelectedIndex == 1) {
+			pdd = getPlayerStatInfo(0, PlayerStatInfo::PlayerStatInfoType::Dps);
+		}
+
+		for (size_t i = 0; i < pdd->size(); i++) {
+			System::String^ lefttext = gcnew System::String((*pdd)[i].player.c_str());
+			lefttext = (i + 1) + ". " + lefttext;
+			System::String^ righttext = (*pdd)[i].value.ToString();
+			righttext = righttext + " (" + (*pdd)[i].percentage.ToString() + "%)";
+			bh->add(lefttext, righttext, (*pdd)[i].playerid, (*pdd)[i].percentage, (*pdd)[i].classid);
+		}
+
+		pbMain->Invalidate();
+
+
 	}
-	else if (tcBars->SelectedIndex == 2) {
-		pdd = getPlayerStatInfo(0, PlayerStatInfo::PlayerStatInfoType::Heal);
-	}
-	else if (tcBars->SelectedIndex == 1) {
-		pdd = getPlayerStatInfo(0, PlayerStatInfo::PlayerStatInfoType::Dps);
+
+	private: System::Void WinPlayer_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
+
 	}
 
-	for (size_t i = 0; i < pdd->size(); i++) {
-		System::String^ lefttext = gcnew System::String((*pdd)[i].player.c_str());
-		lefttext = (i + 1) + ". " + lefttext;
-		System::String^ righttext = (*pdd)[i].value.ToString();
-		righttext = righttext + " (" + (*pdd)[i].percentage.ToString() + "%)";
-		bh->add(lefttext, righttext, (*pdd)[i].playerid,(*pdd)[i].percentage, (*pdd)[i].classid);
+
+	private: System::Void pbMain_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+		MetroFramework::Controls::MetroPanel^ p = metroPanel1;
+		bh->draw(e->Graphics);
+		metroScrollBar1->Maximum = pbMain->Height - metroPanel1->Height + 15;
 	}
 
-	pbMain->Invalidate();
+	private: System::Void metroScrollBar1_Scroll(System::Object^  sender, System::Windows::Forms::ScrollEventArgs^  e) {
+		metroPanel1->VerticalScroll->Value = metroScrollBar1->Value;
+	}
+	private: System::Void metroPanel1_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
+		metroScrollBar1->Focus();
+	}
+	private: System::Void pbMain_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
+		metroScrollBar1->Focus();
+	}
+	private: System::Void btnHome_Click(System::Object^  sender, System::EventArgs^  e) {
+		tcMain->SelectedIndex = 0;
+	}
+	private: System::Void btnSettings_Click(System::Object^  sender, System::EventArgs^  e) {
+		tcMain->SelectedIndex = 1;
+	}
 
+	private: System::Void tcBars_Selected(System::Object^  sender, System::Windows::Forms::TabControlEventArgs^  e) {
+		timer1_Tick(nullptr, nullptr);
+	}
 
-}
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+		bh->add("Test", "Hallo", 123, 50, 3);
+		bh->add("Test", "Hallo", 3434, 25, 2);
+		pbMain->Invalidate();
+	}
 
-private: System::Void WinMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
-	
-}
+	private: System::Void pbMain_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
+		MouseEventArgs^ mouseargs = dynamic_cast<MouseEventArgs^>(e);
+		if (mouseargs == nullptr) return; //Event arguments are not a mouse event
+		System::Windows::Forms::MessageBox::Show(bh->getIdByPixel(mouseargs->X, mouseargs->Y).ToString());
 
+	}
 
-private: System::Void pbMain_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-	MetroFramework::Controls::MetroPanel^ p = metroPanel1;	
-	bh->draw(e->Graphics);
-	metroScrollBar1->Maximum = pbMain->Height - metroPanel1->Height + 15;
-}
-
-private: System::Void metroScrollBar1_Scroll(System::Object^  sender, System::Windows::Forms::ScrollEventArgs^  e) {
-	metroPanel1->VerticalScroll->Value = metroScrollBar1->Value;
-}
-private: System::Void metroPanel1_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
-	metroScrollBar1->Focus();
-}
-private: System::Void pbMain_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
-	metroScrollBar1->Focus();
-}
-private: System::Void btnHome_Click(System::Object^  sender, System::EventArgs^  e) {
-	tcMain->SelectedIndex = 0;
-}
-private: System::Void btnSettings_Click(System::Object^  sender, System::EventArgs^  e) {
-	tcMain->SelectedIndex = 1;
-}
-
-private: System::Void tcBars_Selected(System::Object^  sender, System::Windows::Forms::TabControlEventArgs^  e) {
-	timer1_Tick(nullptr, nullptr);
-}
-
-private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-	bh->add("Test", "Hallo",123, 50, 3);
-	bh->add("Test", "Hallo", 3434, 25, 2);
-	pbMain->Invalidate();
-	WinPlayer^ wp = gcnew WinPlayer(2,3);
-	wp->Show();
-
-}
-
-private: System::Void pbMain_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
-	MouseEventArgs^ mouseargs = dynamic_cast<MouseEventArgs^>(e);
-	if (mouseargs == nullptr) return; //Event arguments are not a mouse event
-	System::Windows::Forms::MessageBox::Show(bh->getIdByPixel(mouseargs->X, mouseargs->Y).ToString());
-
-}
-
-private: System::Void pbMain_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-	MouseEventArgs^ mouseargs = dynamic_cast<MouseEventArgs^>(e);
-	if (mouseargs == nullptr) return; //Event arguments are not a mouse event
-	//System::Windows::Forms::MessageBox::Show(bh->getIdByPixel(mouseargs->X, mouseargs->Y).ToString());
-	if (bh->getIdByPixel(mouseargs->X, mouseargs->Y) != 0)
-		pbMain->Cursor = System::Windows::Forms::Cursors::Hand;
-	else
-		pbMain->Cursor = System::Windows::Forms::Cursors::Arrow;
-}
-};
+	private: System::Void pbMain_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+		MouseEventArgs^ mouseargs = dynamic_cast<MouseEventArgs^>(e);
+		if (mouseargs == nullptr) return; //Event arguments are not a mouse event
+										  //System::Windows::Forms::MessageBox::Show(bh->getIdByPixel(mouseargs->X, mouseargs->Y).ToString());
+		if (bh->getIdByPixel(mouseargs->X, mouseargs->Y) != 0)
+			pbMain->Cursor = System::Windows::Forms::Cursors::Hand;
+		else
+			pbMain->Cursor = System::Windows::Forms::Cursors::Arrow;
+	}
+	};
 }
