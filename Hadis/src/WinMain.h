@@ -167,6 +167,7 @@ namespace Hadis {
 			// 
 			// timer1
 			// 
+			this->timer1->Enabled = true;
 			this->timer1->Interval = 300;
 			this->timer1->Tick += gcnew System::EventHandler(this, &WinMain::timer1_Tick);
 			// 
