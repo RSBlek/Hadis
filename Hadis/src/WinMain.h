@@ -510,6 +510,8 @@ namespace Hadis {
 			cbDevices->Items->Add(devices[i]);
 		}
 		if (cbDevices->Items->Count > 0) cbDevices->SelectedIndex = 0;
+		NetDevice^ netdev = (NetDevice^)cbDevices->SelectedItem;
+		start(netdev->ip);
 	}
 
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
