@@ -2,6 +2,14 @@
 #include "Hadis.h"
 #include <algorithm>
 
+void Hds::init() {
+	HANDLE hCurrentProcess = GetCurrentProcess(); //Get Handle of current process
+	wchar_t executablePath[512];
+	GetModuleFileNameEx(hCurrentProcess, NULL, executablePath, 512); //Get path by process handle
+	wchar_t FirewallRuleName[] = L"Hadis";
+	Firewall::addFirewallApp(executablePath, FirewallRuleName);
+	CreateThread(NULL, 0, Hds::processStart, &Hds::getInstance(), 0L, NULL);
+}
 
 void Hds::reset() {
 	srcxdstport = 0;

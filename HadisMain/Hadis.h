@@ -46,6 +46,7 @@ public:
 	std::vector<PlayerStatInfo>* getPlayerStatInfo(unsigned int targetid, PlayerStatInfo::PlayerStatInfoType type);
 
 public:
+	void init();
 	void process();
 	void reset();
 	static DWORD WINAPI processStart(void* data);
