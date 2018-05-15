@@ -89,6 +89,77 @@ void Firewall::WindowsFirewallCleanup(IN INetFwProfile* fwProfile)
 	}
 }
 
+HRESULT Firewall::WindowsFirewallRemoveApp(
+	IN INetFwProfile* fwProfile,
+	IN const wchar_t* fwProcessImageFileName
+)
+{
+	HRESULT hr = S_OK;
+	BOOL fwAppEnabled;
+	BSTR fwBstrName = NULL;
+	BSTR fwBstrProcessImageFileName = NULL;
+	INetFwAuthorizedApplications* fwApps = NULL;
+
+	_ASSERT(fwProfile != NULL);
+	_ASSERT(fwProcessImageFileName != NULL);
+
+	// First check to see if the application is already authorized.
+	hr = WindowsFirewallAppIsEnabled(
+		fwProfile,
+		fwProcessImageFileName,
+		&fwAppEnabled
+	);
+	if (FAILED(hr))
+	{
+		////printf("WindowsFirewallAppIsEnabled failed: 0x%08lx\n", hr);
+		goto error;
+	}
+
+	// Only add the application if it isn't already authorized.
+	if (fwAppEnabled)
+	{
+		// Retrieve the authorized application collection.
+		hr = fwProfile->get_AuthorizedApplications(&fwApps);
+		if (FAILED(hr))
+		{
+			////printf("get_AuthorizedApplications failed: 0x%08lx\n", hr);
+			goto error;
+		}
+
+
+		// Allocate a BSTR for the process image file name.
+		fwBstrProcessImageFileName = SysAllocString(fwProcessImageFileName);
+		if (fwBstrProcessImageFileName == NULL)
+		{
+			hr = E_OUTOFMEMORY;
+			////printf("SysAllocString failed: 0x%08lx\n", hr);
+			goto error;
+		}
+
+		// Add the application to the collection.
+		hr = fwApps->Remove(fwBstrProcessImageFileName);
+		if (FAILED(hr))
+		{
+			//printf("Remove failed: 0x%08lx\n", hr);
+			goto error;
+		}
+
+		////printf("Authorized application %lS is now enabled in the firewall.\n",fwProcessImageFileName);
+	}
+
+error:
+
+	// Free the BSTRs.
+	SysFreeString(fwBstrProcessImageFileName);
+
+	// Release the authorized application collection.
+	if (fwApps != NULL)
+	{
+		fwApps->Release();
+	}
+
+	return hr;
+}
 
 HRESULT Firewall::WindowsFirewallAddApp(
 	IN INetFwProfile* fwProfile,
@@ -325,6 +396,32 @@ bool Firewall::addFirewallApp(wchar_t* FileName, wchar_t* AppName) {
 	return true;
 }
 
+bool Firewall::removeFirewallApp(wchar_t* FileName) {
+
+	HRESULT hr = S_OK;
+	INetFwProfile* fwProfile = NULL;
+	HRESULT comInit = E_FAIL;
+
+	comInit = CoInitializeEx(
+		0,
+		COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE
+	);
+	if (comInit != RPC_E_CHANGED_MODE)
+	{
+		hr = comInit;
+		if (FAILED(hr)) return false;
+	}
+
+	hr = WindowsFirewallInitialize(&fwProfile);
+	if (FAILED(hr)) return false;
+
+	hr = WindowsFirewallRemoveApp(
+		fwProfile,
+		FileName
+	);
+	if (FAILED(hr)) return false;
+	return true;
+}
 
 bool Firewall::isFirewallRule(wchar_t* Name, wchar_t* Path) {
 	HRESULT hrComInit = S_OK;

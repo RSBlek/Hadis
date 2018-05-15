@@ -18,11 +18,16 @@ class Firewall {
 		IN const wchar_t* fwProcessImageFileName,
 		IN const wchar_t* fwName
 	);
+	static HRESULT WindowsFirewallRemoveApp(
+		IN INetFwProfile* fwProfile,
+		IN const wchar_t* fwProcessImageFileName
+	);
 	static HRESULT WindowsFirewallInitialize(OUT INetFwProfile** fwProfile);
 	static void WindowsFirewallCleanup(IN INetFwProfile* fwProfile);
 	static HRESULT WFCOMInitialize(INetFwPolicy2** ppNetFwPolicy2);
 public:
 	static bool addFirewallApp(wchar_t* FileName, wchar_t* AppName);
+	static bool removeFirewallApp(wchar_t* FileName);
 	static bool isFirewallRule(wchar_t* Name, wchar_t* Path);
 
 };
