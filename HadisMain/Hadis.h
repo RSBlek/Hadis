@@ -41,14 +41,16 @@ private:
 	void processbuffer(PacketBuffer* pb, bool isclient);
 	unsigned char getUIClassID(unsigned char classid);
 	void calculateDpsForAttack(std::unordered_map<unsigned int, PlayerAttackDuration>* playerdpsinfomap, AttackPacket* currentAttackPacket, unsigned int objectid);
-
+	Hds() {}
 public:
 	std::vector<PlayerStatInfo>* getPlayerStatInfo(unsigned int targetid, PlayerStatInfo::PlayerStatInfoType type);
-
 
 public:
 	void process();
 	void reset();
 	static DWORD WINAPI processStart(void* data);
-
+	static Hds& getInstance() {
+		static Hds instance;
+		return instance;
+	}
 };
