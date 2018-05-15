@@ -2,14 +2,19 @@
 #include "Sniffer.h"
 #include "NetworkHeader.h"
 
-
-int Sniffer::devip = 0;
-bool Sniffer::exited = false;
-
 using namespace std::chrono;
 
-DWORD WINAPI Sniffer::startSniff(void* data) {
-	int ip = Sniffer::devip;
+DWORD WINAPI Sniffer::sniffStart(void* data) {
+	Sniffer* This = (Sniffer*)data;
+	This->sniff();
+	return 0;
+}
+
+void Sniffer::setIp(int ip) {
+	this->devip = ip;
+}
+
+void Sniffer::sniff() {
 	struct   sockaddr_in sock_sniff;
 	SOCKET   sniff_socket = -1;
 	WSAData  sa_data;
@@ -38,12 +43,12 @@ DWORD WINAPI Sniffer::startSniff(void* data) {
 	sock_sniff.sin_family = AF_INET;
 	sock_sniff.sin_port = htons(0);
 	// If your machine has more than one IP you might put another one instead thisIP value
-	sock_sniff.sin_addr.s_addr = ip;
+	sock_sniff.sin_addr.s_addr = this->devip;
 
 	if (::bind(sniff_socket, (struct sockaddr *)&sock_sniff, sizeof(sock_sniff)) == SOCKET_ERROR)
 	{
 		char errormsg[128];
-		sprintf_s(errormsg, "Error Code: %d \r\v Dev: %d", WSAGetLastError(),ip);
+		sprintf_s(errormsg, "Error Code: %d \r\v Dev: %d", WSAGetLastError(),this->devip);
 		MessageBoxA(NULL, errormsg, "Hadis Error", 0);
 		exit(-2);
 	}	
@@ -129,6 +134,6 @@ DWORD WINAPI Sniffer::startSniff(void* data) {
 		cout << PacketBuffer::allpackets.size() << endl;
 		PacketBuffer::packetmutex.unlock();
 	}
-	return 0;
+	
 }
 

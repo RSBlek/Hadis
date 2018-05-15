@@ -13,7 +13,10 @@ using namespace std;
 
 class Sniffer {
 public:
-	static DWORD WINAPI startSniff(void* data);
-	static int devip;
-	static bool exited;
+	static DWORD WINAPI sniffStart(void* data);
+	void setIp(int ip);
+private:
+	void sniff();
+	int devip;
+	bool exited;
 };
