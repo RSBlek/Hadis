@@ -32,7 +32,6 @@ unsigned char Hds::getUIClassID(unsigned char classid) {
 	return 6;
 }
 
-
 void Hds::calculateDpsForAttack(std::unordered_map<unsigned int, PlayerAttackDuration>* playerattackdurationmap, AttackPacket* currentAttackPacket, unsigned int objectid) {
 	PlayerAttackDuration playerdpsinfo = (*playerattackdurationmap)[objectid]; //Get players lasthittimestamp and cumulated attackduration
 	if (playerdpsinfo.lasthittimestamp < (currentAttackPacket->timestamp - MAXPLAYERIDLE)) //If his last hit is longer ago than the maximum idle time
@@ -43,8 +42,34 @@ void Hds::calculateDpsForAttack(std::unordered_map<unsigned int, PlayerAttackDur
 }
 
 PlayerSummary* Hds::getPlayerSummary(unsigned int objectid, PlayerSummary::PlayerSummaryType type) {
+	if (packethandler->playerlist.find(objectid) == packethandler->playerlist.end()) return nullptr;
 	PlayerSummary* ps = new PlayerSummary();
-	ps->playername = L"HALLO";
+	SM_PLAYER_INFO_Packet* player = packethandler->playerlist[objectid];
+	ps->playername = player->name;
+	ps->objectid = objectid;
+	if (packethandler->attacksByObjectID.find(objectid) == packethandler->attacksByObjectID.end())
+		return ps;
+
+	list<AttackPacket*> attacklist = packethandler->attacksByObjectID[objectid];
+	list<AttackPacket*>::iterator attacklistit;
+	unordered_map<unsigned short, SpellSummary> spellmap = unordered_map<unsigned short, SpellSummary>();
+
+	for (attacklistit = attacklist.begin(); attacklistit != attacklist.end(); attacklistit++) {
+		AttackPacket* currentattackpacket = (*attacklistit);
+		unsigned short currentspellid = currentattackpacket->spellid;
+		for (int i = 0; i < currentattackpacket->hits.size(); i++) {
+			Attack currenthit = currentattackpacket->hits[i];
+			spellmap[currentspellid].totaldamage += currenthit.damage;
+			if (currenthit.type == Attack::AttackStatus::Normal) {
+
+			}
+		}
+	}
+
+	for (unordered_map<unsigned short, SpellSummary>::iterator it = spellmap.begin(); it != spellmap.end(); it++) {
+		ps->spells.push_back(it->second);
+	}
+
 	return ps;
 }
 
