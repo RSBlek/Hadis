@@ -157,6 +157,8 @@
     <ClInclude Include="OpCodes.h" />
     <ClInclude Include="PacketBuffer.h" />
     <ClInclude Include="PacketHandler.h" />
+    <ClInclude Include="PlayerAttackDuration.h" />
+    <ClInclude Include="PlayerStatInfo.h" />
     <ClInclude Include="Security.h" />
     <ClInclude Include="SM_MOVE_Packet.h" />
     <ClInclude Include="Spells.h" />

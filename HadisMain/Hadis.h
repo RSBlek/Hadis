@@ -1,31 +1,7 @@
 #pragma once
+#include "PlayerAttackDuration.h"
 
 #define MAXPLAYERIDLE 3000
-
-struct PlayerAttackDuration {
-	unsigned long long lasthittimestamp = 0;
-	unsigned long long attackduration = 0;
-};
-
-class PlayerStatInfo {
-
-public:
-	enum PlayerStatInfoType { Damage, Heal, Dps };
-
-	std::wstring player;
-	unsigned long long playerid;
-	unsigned int value;
-	short percentage;
-	unsigned char classid;
-	PlayerStatInfoType type;
-
-	bool operator < (const PlayerStatInfo& str) const
-	{
-		return (value > str.value);
-	}
-
-};
-
 
 class Hds {
 private:

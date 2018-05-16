@@ -22,6 +22,9 @@
     <Filter Include="Headerdateien\Security">
       <UniqueIdentifier>{138fd2f3-248d-4385-b475-8446b5aa48a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Link Layer">
+      <UniqueIdentifier>{1b1fb90a-6e72-4818-96c4-943196b59947}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -101,6 +104,12 @@
     </ClInclude>
     <ClInclude Include="CM_MOVE_Packet.h">
       <Filter>Headerdateien\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerStatInfo.h">
+      <Filter>Headerdateien\Link Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAttackDuration.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
