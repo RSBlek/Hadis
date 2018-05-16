@@ -19,7 +19,8 @@ private:
 	void calculateDpsForAttack(std::unordered_map<unsigned int, PlayerAttackDuration>* playerdpsinfomap, AttackPacket* currentAttackPacket, unsigned int objectid);
 	Hds() {}
 public:
-	std::vector<PlayerStatInfo>* getPlayerStatInfo(unsigned int targetid, PlayerStatInfo::PlayerStatInfoType type);
+	std::vector<PlayerStatInfo>* getPlayerStatInfo(unsigned long long targetid, PlayerStatInfo::PlayerStatInfoType type);
+	PlayerSummary* getPlayerSummary(unsigned int objectid, PlayerSummary::PlayerSummaryType type);
 
 public:
 	void init();

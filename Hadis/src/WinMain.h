@@ -11,10 +11,15 @@ namespace Hadis {
 		CallingConvention = CallingConvention::Cdecl)]
 	extern void start(int ip);
 	[DllImport("HadisMain.dll",
-		EntryPoint = "?getPlayerStatInfo@@YAPAV?$vector@VPlayerStatInfo@@V?$allocator@VPlayerStatInfo@@@std@@@std@@IW4PlayerStatInfoType@PlayerStatInfo@@@Z",
+		EntryPoint = "?getPlayerStatInfo@@YAPAV?$vector@VPlayerStatInfo@@V?$allocator@VPlayerStatInfo@@@std@@@std@@_KW4PlayerStatInfoType@PlayerStatInfo@@@Z",
 		ExactSpelling = true,
 		CallingConvention = CallingConvention::Cdecl)]
 	extern std::vector<PlayerStatInfo>* getPlayerStatInfo(unsigned int target, PlayerStatInfo::PlayerStatInfoType type);
+	[DllImport("HadisMain.dll",
+		EntryPoint = "?getPlayerSummary@@YAPAVPlayerSummary@@_KW4PlayerSummaryType@1@@Z",
+		ExactSpelling = true,
+		CallingConvention = CallingConvention::Cdecl)]
+	extern PlayerSummary* getPlayerSummary(unsigned long long objectid, PlayerSummary::PlayerSummaryType type);
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -91,7 +96,7 @@ namespace Hadis {
 			}
 		}
 
-	private: System::Windows::Forms::Button^  button1;
+
 	private: System::ComponentModel::IContainer^  components;
 	protected:
 
@@ -114,7 +119,6 @@ namespace Hadis {
 		{
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(WinMain::typeid));
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->rtPlayerlist = (gcnew System::Windows::Forms::RichTextBox());
 			this->rtSpells = (gcnew System::Windows::Forms::RichTextBox());
@@ -139,9 +143,9 @@ namespace Hadis {
 			this->tcMain = (gcnew MetroFramework::Controls::MetroTabControl());
 			this->tpMain = (gcnew MetroFramework::Controls::MetroTabPage());
 			this->tpSettings = (gcnew MetroFramework::Controls::MetroTabPage());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->lblDevice = (gcnew MetroFramework::Controls::MetroLabel());
 			this->cbDevices = (gcnew MetroFramework::Controls::MetroComboBox());
-			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			this->tabPage2->SuspendLayout();
@@ -155,16 +159,6 @@ namespace Hadis {
 			this->tpMain->SuspendLayout();
 			this->tpSettings->SuspendLayout();
 			this->SuspendLayout();
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(-4, 49);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Start Sniffer";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &WinMain::button1_Click);
 			// 
 			// timer1
 			// 
@@ -431,7 +425,6 @@ namespace Hadis {
 			this->tpSettings->Controls->Add(this->lblDevice);
 			this->tpSettings->Controls->Add(this->tabControl1);
 			this->tpSettings->Controls->Add(this->cbDevices);
-			this->tpSettings->Controls->Add(this->button1);
 			this->tpSettings->HorizontalScrollbarBarColor = true;
 			this->tpSettings->HorizontalScrollbarHighlightOnWheel = false;
 			this->tpSettings->HorizontalScrollbarSize = 10;
@@ -443,6 +436,16 @@ namespace Hadis {
 			this->tpSettings->VerticalScrollbarBarColor = true;
 			this->tpSettings->VerticalScrollbarHighlightOnWheel = false;
 			this->tpSettings->VerticalScrollbarSize = 10;
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(126, 134);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 15;
+			this->button2->Text = L"button2";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &WinMain::button2_Click);
 			// 
 			// lblDevice
 			// 
@@ -465,16 +468,6 @@ namespace Hadis {
 			this->cbDevices->TabIndex = 8;
 			this->cbDevices->Theme = MetroFramework::MetroThemeStyle::Dark;
 			this->cbDevices->UseSelectable = true;
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(126, 134);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
-			this->button2->TabIndex = 15;
-			this->button2->Text = L"button2";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &WinMain::button2_Click);
 			// 
 			// WinMain
 			// 
@@ -515,16 +508,6 @@ namespace Hadis {
 		NetDevice^ netdev = (NetDevice^)cbDevices->SelectedItem;
 		start(netdev->ip);
 	}
-
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		if (cbDevices->SelectedItem == nullptr ) {
-			MessageBoxA(NULL, "Please select a network interface", "Hadis Error", 0);
-			return;
-		}
-		NetDevice^ netdev = (NetDevice^)cbDevices->SelectedItem;	
-		start(netdev->ip);
-	}
-
 
 private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
 	bh->clear();
@@ -588,9 +571,9 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	bh->add("Test", "Hallo",123, 50, 3);
 	bh->add("Test", "Hallo", 3434, 25, 2);
 	pbMain->Invalidate();
-	WinPlayer^ wp = gcnew WinPlayer(2,3);
-	wp->Show();
-
+	PlayerSummary* ps = getPlayerSummary(0, PlayerSummary::PlayerSummaryType::Damage);
+	/*WinPlayer^ wp = gcnew WinPlayer(2,3);
+	wp->Show();*/
 }
 
 private: System::Void pbMain_DoubleClick(System::Object^  sender, System::EventArgs^  e) {

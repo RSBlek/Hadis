@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\PlayerSummary.h" />
     <ClInclude Include="src\BarHandler.h" />
     <ClInclude Include="src\NetDevice.h" />
     <ClInclude Include="src\PlayerStatInfo.h" />

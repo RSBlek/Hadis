@@ -20,6 +20,7 @@
 
 #include "WinPlayer.h"
 #include "PlayerStatInfo.h"
+#include "PlayerSummary.h"
 #include "NetDevice.h"
 #include "BarHandler.h"
 

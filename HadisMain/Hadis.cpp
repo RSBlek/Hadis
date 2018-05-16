@@ -42,9 +42,13 @@ void Hds::calculateDpsForAttack(std::unordered_map<unsigned int, PlayerAttackDur
 	(*playerattackdurationmap)[objectid].lasthittimestamp = currentAttackPacket->timestamp; //Set the players last hit timestamp to the current timestamp
 }
 
+PlayerSummary* Hds::getPlayerSummary(unsigned int objectid, PlayerSummary::PlayerSummaryType type) {
+	PlayerSummary* ps = new PlayerSummary();
+	ps->playername = L"HALLO";
+	return ps;
+}
 
-
-std::vector<PlayerStatInfo>* Hds::getPlayerStatInfo(unsigned int targetid, PlayerStatInfo::PlayerStatInfoType type) {
+std::vector<PlayerStatInfo>* Hds::getPlayerStatInfo(unsigned long long targetid, PlayerStatInfo::PlayerStatInfoType type) {
 
 	std::unordered_map<unsigned int, unsigned int> damagedonemap = std::unordered_map<unsigned int, unsigned int>(); //Hashmap with player objectid as key and his overall damage/heal done as value
 	std::unordered_map<unsigned int, PlayerAttackDuration> playerattackdurationmap = std::unordered_map<unsigned int, PlayerAttackDuration>(); //Hashmap with player objectid as key and a struct where his lasthit and the cumulated attack duration as value

@@ -111,6 +111,9 @@
     <ClInclude Include="PlayerAttackDuration.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerSummary.h">
+      <Filter>Headerdateien\Link Layer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
