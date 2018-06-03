@@ -580,7 +580,9 @@ private: System::Void pbMain_DoubleClick(System::Object^  sender, System::EventA
 	MouseEventArgs^ mouseargs = dynamic_cast<MouseEventArgs^>(e);
 	if (mouseargs == nullptr) return; //Event arguments are not a mouse event
 	//System::Windows::Forms::MessageBox::Show(bh->getIdByPixel(mouseargs->X, mouseargs->Y).ToString());
+	WinPlayer^ wp = gcnew WinPlayer(300, 300);
 	PlayerSummary* ps = getPlayerSummary(bh->getIdByPixel(mouseargs->X, mouseargs->Y), PlayerSummary::PlayerSummaryType::Damage);
+	wp->showBars(ps);
 }
 
 private: System::Void pbMain_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {

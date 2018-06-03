@@ -18,9 +18,10 @@
 #include <string>
 #include <iphlpapi.h>
 
-#include "WinPlayer.h"
+
 #include "PlayerStatInfo.h"
 #include "PlayerSummary.h"
+#include "WinPlayer.h"
 #include "NetDevice.h"
 #include "BarHandler.h"
 

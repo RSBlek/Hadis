@@ -46,7 +46,7 @@ PlayerSummary* Hds::getPlayerSummary(unsigned int objectid, PlayerSummary::Playe
 	PlayerSummary* ps = new PlayerSummary();
 	SM_PLAYER_INFO_Packet* player = packethandler->playerlist[objectid];
 	ps->playername = player->name;
-	ps->objectid = objectid;
+	ps->objectid = Security::getUIObjectID(objectid);
 	if (packethandler->attacksByObjectID.find(objectid) == packethandler->attacksByObjectID.end())
 		return ps;
 
@@ -57,18 +57,43 @@ PlayerSummary* Hds::getPlayerSummary(unsigned int objectid, PlayerSummary::Playe
 	for (attacklistit = attacklist.begin(); attacklistit != attacklist.end(); attacklistit++) {
 		AttackPacket* currentattackpacket = (*attacklistit);
 		unsigned short currentspellid = currentattackpacket->spellid;
+		if (currentspellid == 0) continue;
+		spellmap[currentspellid].spellname = Spells::getSpell(currentspellid);
 		for (int i = 0; i < currentattackpacket->hits.size(); i++) {
 			Attack currenthit = currentattackpacket->hits[i];
 			spellmap[currentspellid].totaldamage += currenthit.damage;
-			if (currenthit.type == Attack::AttackStatus::Normal) {
 
+			if (currenthit.damage > spellmap[currentspellid].maxdamage)
+				spellmap[currentspellid].maxdamage = currenthit.damage;
+
+			if (currenthit.damage == 0) {
+				spellmap[currentspellid].mindamage = currenthit.damage;
 			}
+			else if (currenthit.damage < spellmap[currentspellid].mindamage){
+				spellmap[currentspellid].mindamage = currenthit.damage;
+			}
+				
+
+			if (currenthit.type == Attack::AttackStatus::Normal) {
+				spellmap[currentspellid].normalhits++;
+			}
+			else if (currenthit.type == Attack::AttackStatus::Critical) {
+				spellmap[currentspellid].criticalhits++;
+				spellmap[currentspellid].criticaldamage = currenthit.damage;
+			}
+			else {
+				spellmap[currentspellid].evadedhits++;
+			}
+
 		}
 	}
 
 	for (unordered_map<unsigned short, SpellSummary>::iterator it = spellmap.begin(); it != spellmap.end(); it++) {
-		ps->spells.push_back(it->second);
+		if(it->second.spellname != "")
+			ps->spells.push_back(it->second);
 	}
+
+	std::sort(ps->spells.begin(), ps->spells.end() );
 
 	return ps;
 }

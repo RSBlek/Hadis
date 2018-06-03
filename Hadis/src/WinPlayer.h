@@ -45,7 +45,15 @@ namespace Hadis {
 
 	public:
 
+		void showBars(PlayerSummary* ps) {
+			this->Show();
 
+			for (size_t i = 0; i < ps->spells.size(); i++) {
+				bh->add(gcnew System::String (ps->spells[i].spellname.c_str()) , ps->spells[i].totaldamage.ToString(), 0, 100, 0);
+			}
+
+			pbMain->Invalidate();
+		}
 
 	private: MetroFramework::Controls::MetroPanel^  metroPanel1;
 	private: MetroFramework::Controls::MetroScrollBar^  metroScrollBar1;

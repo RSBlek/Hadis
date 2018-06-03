@@ -4,7 +4,7 @@ class Spells {
 
 public:
 	static std::string getSpell(short spellid) {
-		if (spellid < 0 || spellid > 2039) return "Unknown";
+		if (spellid < 0 || spellid > 23039) return "Unknown";
 		std::stringstream ss = std::stringstream();
 
 		size_t i = 0;
